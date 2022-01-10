@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/migrate.js",
+    "graphql:codegen": "graphql-codegen --config graphql-codegen.yml"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^17.0.8",
+    "@types/yargs": "^17.0.8",
+    "ansi-colors": "^4.1.1",
+    "graphql": "^16.2.0",
+    "graphql-request": "^3.7.0",
+    "node-fetch": "^2.0.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.3.1",
+    "@graphql-codegen/introspection": "2.1.1",
+    "@graphql-codegen/typescript": "2.4.2",
+    "@graphql-codegen/typescript-document-nodes": "2.2.2",
+    "@graphql-codegen/typescript-graphql-files-modules": "2.1.1",
+    "@graphql-codegen/typescript-graphql-request": "^4.3.3",
+    "@graphql-codegen/typescript-operations": "2.2.2"
+  }
+}

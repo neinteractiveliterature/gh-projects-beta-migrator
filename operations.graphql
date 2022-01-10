@@ -1,0 +1,75 @@
+query GetProjectDataQuery(
+  $organization: String!
+  $repository: String!
+  $projectNumber: Int!
+  $projectNextNumber: Int!
+) {
+  organization(login: $organization) {
+    projectNext(number: $projectNextNumber) {
+      id
+      title
+      fields(first: 100) {
+        nodes {
+          id
+          name
+          settings
+        }
+      }
+    }
+  }
+  repository(name: $repository, owner: $organization) {
+    project(number: $projectNumber) {
+      name
+      columns(first: 10) {
+        nodes {
+          name
+          cards {
+            nodes {
+              content {
+                __typename
+
+                ... on Issue {
+                  id
+                  title
+                  number
+                }
+
+                ... on PullRequest {
+                  id
+                  title
+                  number
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation AddItemMutation($projectId: ID!, $contentId: ID!) {
+  addProjectNextItem(input: { projectId: $projectId, contentId: $contentId }) {
+    projectNextItem {
+      id
+    }
+  }
+}
+
+mutation UpdateItemStatusMutation(
+  $projectId: ID!
+  $itemId: ID!
+  $statusFieldId: ID!
+  $value: String!
+) {
+  updateProjectNextItemField(
+    input: {
+      projectId: $projectId
+      itemId: $itemId
+      fieldId: $statusFieldId
+      value: $value
+    }
+  ) {
+    clientMutationId
+  }
+}
